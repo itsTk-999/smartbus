@@ -342,14 +342,14 @@ body {
    BOOKING PAGE STYLES(SEARCH)
 ===================================== */
 
-.booking-section {
+.bookingsection {
   max-width: 1200px;
   margin: 80px auto 50px;
   padding: 20px;
   animation: fadeIn 1.2s ease-in-out;
 }
 
-.booking-section h2 {
+.bookingsection h2 {
   text-align: center;
   color: #f5f903;
   font-size: 2rem;
@@ -358,7 +358,7 @@ body {
 }
 
 /* Booking container */
-.booking-container {
+.bookingcontainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -371,7 +371,7 @@ body {
 }
 
 /* ===== SEAT SELECTION ===== */
-.seat-selection h3 {
+.seatselection h3 {
   margin-bottom: 15px;
   font-size: 1.2rem;
   color: #ff9800;
@@ -452,20 +452,20 @@ body {
   background: #19866e;
 }
 
-.booking-form {
+.bookingform {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.booking-form h3 {
+.bookingform h3 {
   font-size: 1.2rem;
   color: #ff9800;
   margin-bottom: 5px;
 }
 
-.booking-form input,
-.booking-form select {
+.bookingform input,
+.bookingform select {
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -474,14 +474,14 @@ body {
   transition: 0.3s;
 }
 
-.booking-form input:focus,
-.booking-form select:focus {
+.bookingform input:focus,
+.bookingform select:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid #ff9800;
 }
 
-.booking-form label {
+.bookingform label {
   font-size: 14px;
   color: #ccc;
   margin-bottom: -10px;
@@ -569,7 +569,7 @@ body {
 /* Additional styles can be added below as needed */
 
 /* ===== route selection ===== */
-.route-selection {
+.routeselection {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -577,19 +577,19 @@ body {
   margin-bottom: 22px;
 }
 
-.route-selection .route-field {
+.routeselection .route-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   min-width: 160px;
 }
 
-.route-selection label {
+.routeselection label {
   color: #dfefff;
   font-size: 13px;
 }
 
-.route-selection select {
+.routeselection select {
   padding: 10px 12px;
   border-radius: 10px;
   border: none;
@@ -599,7 +599,7 @@ body {
 }
 
 /* booking container / seat layout */
-.booking-container {
+.bookingcontainer {
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 36px;
@@ -611,14 +611,14 @@ body {
   backdrop-filter: blur(8px);
 }
 
-.seat-selection h3 {
+.seatselection h3 {
   color: #ff9800;
   margin-bottom: 12px;
 }
 
 /* seat grid */
 /* Booking Page Layout */
-.booking-container1 {
+.bookingcontainer1 {
   max-width: auto;
   margin-top: 100px;
   margin: 30px auto;
@@ -630,25 +630,25 @@ body {
   animation: fadeIn 0.8s ease-in;
 }
 
-.booking-container h1 {
+.bookingcontainer h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #ff9800;
 }
 
 /* Form Styles */
-.form-group {
+.formgroup {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.formgroup label {
   display: block;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group select {
+.formgroup input,
+.formgroup select {
   width: 100%;
   padding: 10px;
   border-radius: 6px;
@@ -657,7 +657,7 @@ body {
 }
 
 /* Seat Layout */
-.seat-container {
+.seatcontainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -751,6 +751,7 @@ body {
     opacity: 1;
   }
 }
+
 
 
 
