@@ -62,11 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function findRouteData(dep, dest) {
     const key = getRouteKey(dep, dest);
-    if (busData[key]) return busData[key];
-
-    // Check reverse route
-    const reverseKey = getRouteKey(dest, dep);
-    return busData[reverseKey] || null;
+    return busData[key] || busData[getRouteKey(dest, dep)] || null;
   }
 
   function clearSeats() {
@@ -78,9 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateSeats(reservedSeats = []) {
     seatContainer.innerHTML = '';
     for (let r = 1; r <= ROWS; r++) {
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'seat-row';
-
       for (let c = 1; c <= COLS; c++) {
         const seatId = `${r}${String.fromCharCode(64 + c)}`;
         const seat = document.createElement('button');
@@ -96,9 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
           seat.addEventListener('click', () => toggleSeat(seatId, seat));
         }
 
-        rowDiv.appendChild(seat);
+        seatContainer.appendChild(seat);
       }
-      seatContainer.appendChild(rowDiv);
     }
   }
 
@@ -205,10 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const routeInfo = findRouteData(dep, dest);
-    if (!routeInfo) return;
-
     const bus = routeInfo.buses.find(b => b.id === busId);
-    if (!bus) return;
 
     // Update reserved seats
     bus.reservedSeats = [...new Set([...bus.reservedSeats, ...selectedSeats])];
@@ -226,10 +215,9 @@ Seats: ${selectedSeats.join(', ')}
 Total: KES ${totalCost}
     `);
 
-    // Reset selections
     bookingForm.reset();
     selectedSeats = [];
-    loadSeatsForSelectedBus();
+    clearSeats();
     updateSummary();
   }
 
@@ -239,93 +227,11 @@ Total: KES ${totalCost}
   busSelect.addEventListener('change', loadSeatsForSelectedBus);
   bookingForm.addEventListener('submit', confirmBooking);
 
-  console.info("Dynamic pricing booking system initialized.");
-});
+  // Prevent selecting past dates
+  const dateInput = document.getElementById('travel-date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const seatContainer = document.getElementById('seat-container');
-  const departure = document.getElementById('departure');
-  const destination = document.getElementById('destination');
-  const busSelect = document.getElementById('bus');
-
-  const summaryRoute = document.getElementById('summary-route');
-  const summaryBus = document.getElementById('summary-bus');
-  const selectedSeatsEl = document.getElementById('selected-seats');
-  const totalPriceEl = document.getElementById('total-price');
-
-  let selectedSeats = [];
-  let currentSeatPrice = 0;
-
-  // ===== Bus Routes & Prices =====
-  const routes = {
-    "Nairobi-Mombasa": { price: 1200},
-    "Nairobi-Kisumu": { price: 950},
-    "Nairobi-Eldoret": { price: 700},
-    "Nairobi-Nakuru": { price: 500}
-  };
-
-  // ===== Generate Seats =====
-  function generateSeats(reservedSeats) {
-    seatContainer.innerHTML = '';
-    const rows = 5;
-    const cols = 4;
-
-    for (let r = 1; r <= rows; r++) {
-      for (let c = 1; c <= cols; c++) {
-        const seatId = `${r}${String.fromCharCode(64 + c)}`;
-        const seat = document.createElement('button');
-        seat.classList.add('seat');
-        seat.innerText = seatId;
-
-        if (reservedSeats.includes(seatId)) {
-          seat.classList.add('reserved');
-          seat.disabled = true;
-        } else {
-          seat.addEventListener('click', () => toggleSeat(seat, seatId));
-        }
-
-        seatContainer.appendChild(seat);
-      }
-    }
-  }
-
-  function toggleSeat(seat, seatId) {
-    if (selectedSeats.includes(seatId)) {
-      selectedSeats = selectedSeats.filter(s => s !== seatId);
-      seat.classList.remove('selected');
-    } else {
-      selectedSeats.push(seatId);
-      seat.classList.add('selected');
-    }
-    updateSummary();
-  }
-
-  // ===== Update Summary =====
-  function updateSummary() {
-    const routeKey = `${departure.value}-${destination.value}`;
-    summaryRoute.innerText = routeKey.replace('-', ' → ') || '-';
-    summaryBus.innerText = busSelect.options[busSelect.selectedIndex]?.text || '-';
-    selectedSeatsEl.innerText = selectedSeats.length ? selectedSeats.join(', ') : 'None';
-    totalPriceEl.innerText = `KES ${selectedSeats.length * currentSeatPrice}`;
-  }
-
-  // ===== Load Bus & Price =====
-  function loadRouteInfo() {
-    const routeKey = `${departure.value}-${destination.value}`;
-    if (routes[routeKey]) {
-      currentSeatPrice = routes[routeKey].price;
-      generateSeats(routes[routeKey].reserved);
-      updateSummary();
-    } else {
-      seatContainer.innerHTML = '<p style="color:white;">No buses available for this route</p>';
-      currentSeatPrice = 0;
-      updateSummary();
-    }
-  }
-
-  // ===== Event Listeners =====
-  departure.addEventListener('change', loadRouteInfo);
-  destination.addEventListener('change', loadRouteInfo);
-});
-
-
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navbarMenu = document.query
