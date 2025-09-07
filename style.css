@@ -202,6 +202,8 @@ body {
   background: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s;
 }
 
 /* ===== FOOTER ===== */
@@ -751,6 +753,7 @@ body {
     opacity: 1;
   }
 }
+
 
 
 
