@@ -377,7 +377,7 @@ body {
   color: #ff9800;
 }
 
-.seat-container {
+.seatcontainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
@@ -751,6 +751,7 @@ body {
     opacity: 1;
   }
 }
+
 
 
 
