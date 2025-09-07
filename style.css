@@ -147,7 +147,7 @@ body {
   margin-bottom: 30px;
 }
 
-.dest-grid {
+.destgrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -160,21 +160,21 @@ body {
   transition: transform 0.3s;
 }
 
-.dest-card:hover {
+.destcard:hover {
   transform: translateY(-5px);
 }
 
-.dest-card img {
+.destcard img {
   width: 100%;
   height: 150px;
   object-fit: cover;
 }
 
-.dest-card h3 {
+.destcard h3 {
   margin: 15px 0 5px;
 }
 
-.dest-card p {
+.destcard p {
   color: #ff9800;
   font-weight: bold;
   margin-bottom: 15px;
@@ -751,5 +751,6 @@ body {
     opacity: 1;
   }
 }
+
 
 
