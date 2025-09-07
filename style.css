@@ -192,7 +192,7 @@ body {
   margin-bottom: 30px;
 }
 
-.testimonials-grid {
+.testimonialsgrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -751,6 +751,7 @@ body {
     opacity: 1;
   }
 }
+
 
 
 
