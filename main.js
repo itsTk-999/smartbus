@@ -30,7 +30,7 @@ const animateOnScroll = (elements, className) => {
 };
 
 window.addEventListener('scroll', () => {
-  const destinations = document.querySelectorAll('.dest-card');
+  const destinations = document.querySelectorAll('.destcard');
   const testimonials = document.querySelectorAll('.testimonial');
 
   animateOnScroll(destinations, 'show');
@@ -39,9 +39,10 @@ window.addEventListener('scroll', () => {
 
 // Trigger animation on load
 window.addEventListener('load', () => {
-  const destinations = document.querySelectorAll('.dest-card');
+  const destinations = document.querySelectorAll('.destcard');
   const testimonials = document.querySelectorAll('.testimonial');
 
   animateOnScroll(destinations, 'show');
   animateOnScroll(testimonials, 'show');
 });
+
