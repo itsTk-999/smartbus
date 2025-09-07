@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function findRouteData(dep, dest) {
     const key = getRouteKey(dep, dest);
-    return busData[key] || busData[getRouteKey(dest, dep)] || null;
+    return busData[key] || busData[`${dest}-${dep}`] || null;
   }
 
   function clearSeats() {
@@ -126,11 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!dep || !dest || dep === dest) return;
 
     const routeInfo = findRouteData(dep, dest);
+
+    // ===== DEBUGGING =====
+    console.log("Route info for", dep, "→", dest, ":", routeInfo);
+
     if (!routeInfo) {
-      const opt = document.createElement('option');
-      opt.text = 'No buses available for this route';
-      busSelect.appendChild(opt);
+      busSelect.innerHTML = '<option value="">No buses available</option>';
       currentSeatPrice = 0;
+      updateSummary();
       return;
     }
 
@@ -171,20 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const dest = destinationSelect.value;
     const busId = busSelect.value;
 
-    if (!dep || !dest) {
-      alert('Please choose departure and destination.');
-      return;
-    }
-
-    if (!busId) {
-      alert('Please select a bus.');
-      return;
-    }
-
-    if (selectedSeats.length === 0) {
-      alert('Please select at least one seat.');
-      return;
-    }
+    if (!dep || !dest) { alert('Please choose departure and destination.'); return; }
+    if (!busId) { alert('Please select a bus.'); return; }
+    if (selectedSeats.length === 0) { alert('Please select at least one seat.'); return; }
 
     const fullName = document.getElementById('full-name').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -231,7 +223,4 @@ Total: KES ${totalCost}
   const dateInput = document.getElementById('travel-date');
   const today = new Date().toISOString().split('T')[0];
   dateInput.setAttribute('min', today);
-
-  // Mobile menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navbarMenu = document.query
+});
